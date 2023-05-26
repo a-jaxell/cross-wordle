@@ -2,7 +2,7 @@
     "execMap": {
         "ts": "ts-node"
     },
-    "watch": ["src/backend"],
+    "watch": ["./backend"],
     "ext": "ts,json",
     "ignore": ["src/**/*.spec.ts"],
     "exec": "ts-node --esm ./backend/app.ts"
