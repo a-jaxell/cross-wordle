@@ -1,0 +1,9 @@
+{
+    "execMap": {
+        "ts": "ts-node"
+    },
+    "watch": ["src/backend"],
+    "ext": "ts,json",
+    "ignore": ["src/**/*.spec.ts"],
+    "exec": "ts-node --esm ./backend/app.ts"
+}
