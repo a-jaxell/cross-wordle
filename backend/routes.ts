@@ -30,7 +30,7 @@ app.post('/api/game', (req, res) => {
     const newWord = findWord(words, length, multi);
 
     const gameId: GameObject = {
-        id: uuidv4(),
+        id: uuidv4().toString(),
         multi: multi,
         length: length,
         correctWord: newWord,
@@ -40,10 +40,8 @@ app.post('/api/game', (req, res) => {
     }
 
     GAMES.push(gameId);
-
     res.status(201).json({
-        id: gameId.id,
-
+        id: gameId.id
     });
 })
 
@@ -51,8 +49,13 @@ app.post('/api/game/:id/guess', async (req, res) => {
     const {guessedWord} = req.body;
     const {id} = req.params;
     
+    const game = GAMES.find((game) => game.id == id)
+
+    if(!game){
+      return res.status(404).end();
+    }
     const match = new Ordel;
-    match.input('hallå', guessedWord);
+    match.input(game.correctWord, guessedWord);
 
     res.status(201).json({
         id: id,
