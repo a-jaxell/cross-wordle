@@ -1,12 +1,5 @@
-type FindWordParameters = {
-  wordList: string[];
-  wordLength?: number;
-  multiChars: boolean;
-}
-
-
 // input, en lista med ord samt en siffra som anger önskad längd, samt en indikation på om unika bokstäver är tilllåtna eller ej
-export function findWord({wordList, wordLength = 5, multiChars}: FindWordParameters) {
+export default function findWord(wordList: string[], wordLength: number = 5, multiChars: boolean) {
 
     // Filters submitted array for words of the desired length and if multiple characters are allowed or not.
   const word = multiChars === true
@@ -22,12 +15,12 @@ export function findWord({wordList, wordLength = 5, multiChars}: FindWordParamet
     }
  
 // returns the value of an randomized index in an array
-export const randomizeWord = (array: string[]) => {
+const randomizeWord = (array: string[]) => {
   return array[Math.floor(Math.random() * array.length)];
 };
 
 // Checks wether a word has multiple characters
-export const hasMultipleChars = (word: string) => {
+const hasMultipleChars = (word: string) => {
   const result = [];
 
   // Iterates and checks if word[i] appears in the rest of the word from word[i +1]
