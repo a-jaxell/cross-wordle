@@ -1,3 +1,40 @@
+# Wordle-klon
+
+
+---
+### API
+
+#### /api/game
+##### `POST /api/game`
+Starts a new game and stores game data in database.
+    * Ta emot inställningar
+    * Välja ord efter inställningar
+    * Skapa spelobjekt med ord, gissade ord, inställningar och unikt id
+    * svarar med unikt id
+
+#### /api/highscore
+##### `GET /api/highscore`
+Gets the top ten fastest times according to settings
+    * ta emot inställningar
+    * filtrera efter färdiga spel
+    * filtrera databas efter inställningar 
+    * returnera array med objekt 
+
+##### `POST /api/highscore`
+Post data from finished game to the database.
+    * ta emot objekt med färdigt spel
+    * skapa highscore objekt med relevant data
+    * returnera 201
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
