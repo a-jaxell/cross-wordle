@@ -47,17 +47,17 @@ app.post('/api/game', (req, res) => {
     });
 })
 
-app.put('/api/game', (req, res) => {
-    const {id, guess} = req.body;
+app.post('/api/game/:id/guess', async (req, res) => {
+    const {guessedWord} = req.body;
+    const {id} = req.params;
     
-    if(!GAMES.includes(id)){
-        res.status(204).json({
-         error: 'No such game Id'
-        });
-    } else {
-        res.status(200).json(
-            { submit: 'this is a guess going through'});
-    }
+    const match = new Ordel;
+    match.input('hallå', guessedWord);
+
+    res.status(201).json({
+        id: id,
+        match: match.match(),
+    });
 })
 
 export default app;
