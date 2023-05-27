@@ -3,24 +3,17 @@ import { v4 as uuidv4 } from 'uuid';
 import findWord from './util/findWord.js';
 import Ordel from './util/matchWord.js';
 import words from './words/words.js';
+import databaseConnect from './database/databaseConnect.js';
+import { GameObject } from './util/types.js';
+import { HighscoreModel, GameModel } from './database/models.js';
 
 const app = express();
-
-type GameObject = {
-    id: string;
-    multi: boolean;
-    length: number;
-    correctWord: string;
-    guesses: string[];
-    startTime: Date;
-    endTime: null | Date;
-}
 
 const GAMES: GameObject[] = []; //Database Game object
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
     res.send('App is responding');
 });
 
@@ -62,5 +55,23 @@ app.post('/api/game/:id/guess', async (req, res) => {
         match: match.match(),
     });
 })
+app.post('/api/game/:id/highscore', async (req, res) => {
+    const { name } = req.body;
+    const { id } = req.params;
 
+    const game = GAMES.find((game) => game.id == id)
+
+    if(!game){
+      return res.status(404).end();
+    }
+    await databaseConnect();
+
+    const entry = new HighscoreModel({
+        ...game,
+       name 
+    });
+    await entry.save();
+    
+    res.status(201).json(entry.toJSON());
+})
 export default app;
