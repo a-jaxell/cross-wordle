@@ -9,7 +9,7 @@ import { HighscoreModel, GameModel } from './database/models.js';
 
 const app = express();
 
-const GAMES: GameObject[] = []; //Database Game object
+const GAMES: GameObject[] = []; 
 
 app.use(express.json());
 
@@ -49,10 +49,18 @@ app.post('/api/game/:id/guess', async (req, res) => {
     }
     const match = new Ordel;
     match.input(game.correctWord, guessedWord);
+    const letters = match.match()
+    game.guesses.push(guessedWord);
+
+    const correct = letters.every(letter => letter.result === 'correct');
+
+    if(correct){
+        game.endTime = new Date();
+    }
 
     res.status(201).json({
         id: id,
-        match: match.match(),
+        match: letters,
     });
 })
 app.post('/api/game/:id/highscore', async (req, res) => {
@@ -64,8 +72,8 @@ app.post('/api/game/:id/highscore', async (req, res) => {
     if(!game){
       return res.status(404).end();
     }
+    
     await databaseConnect();
-
     const entry = new HighscoreModel({
         ...game,
        name 
