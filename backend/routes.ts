@@ -60,6 +60,7 @@ app.post('/api/game/:id/guess', async (req, res) => {
 
     res.status(201).json({
         id: id,
+        correct: correct,
         match: letters,
     });
 })
@@ -71,6 +72,9 @@ app.post('/api/game/:id/highscore', async (req, res) => {
 
     if(!game){
       return res.status(404).end();
+    }
+    if(!game.endTime){
+        return res.status(409).end();
     }
     
     await databaseConnect();
