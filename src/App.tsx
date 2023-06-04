@@ -1,13 +1,20 @@
-import React from "react";
-import "./App.css";
 import Header from "./components/Header";
 import Game from "./components/Game";
+import StartGame from "./components/StartGame";
+import { useState } from "react";
 
 function App() {
+  const [game, setGame] = useState();
+
+  //Set any for now, change to GameObject later
+  const getGameData = (data: any) => {
+    setGame(data);
+  };
   return (
     <>
-      <Header />
-      <Game matchResponse={mockMatch} />
+      {/* <Header /> */}
+      <StartGame handleSubmit={getGameData} />
+      {/* <Game matchResponse={mockMatch} /> */}
     </>
   );
 }

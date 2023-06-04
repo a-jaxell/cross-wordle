@@ -5,7 +5,6 @@ export default function Game({
 }: {
   matchResponse: MatchResponse;
 }) {
-  const currentPage = "";
   return (
     <div>
       <Word guessLetters={matchResponse.match} />
