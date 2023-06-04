@@ -1,0 +1,25 @@
+.letter{
+    font-size: larger;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    margin: .5em;
+    justify-content: center;
+    background-color: lightgray;
+    width: 2em;
+    height: 2em;
+    display: flex;
+    align-items: center;
+
+    &.mismatched{
+        color: yellow;
+    }
+    &.correct{
+        color: green
+    }
+}
+.wordContainer{
+    display: flex;
+    flex-direction: row;
+    margin: 0px;
+    list-style: none;
+}
