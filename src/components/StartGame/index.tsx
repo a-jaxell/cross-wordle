@@ -1,41 +1,34 @@
 import styles from "./style.module.scss";
-import { useState } from "react";
+import { FC, useState } from "react";
 
-//Set any for now, change to gameObject later
-export default function StartGame({ setGameData }: any) {
-  const [isChecked, setIsChecked] = useState(false);
+type StartGameProps = {
+  onStartGame: (length: number, multi: boolean) => void;
+};
 
-  const handleOnChange = () => {
-    setIsChecked(!isChecked);
-  };
-  async function handleSubmit() {
-    // Send request with a req body of { "length": "5" , "uniqueChars": "true"}
-    // response will be { id: "id-string"}
-    try {
-      const res = await fetch("/api/game");
-      const data = await res.json();
-
-      setGameData(data);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+const StartGame: FC<StartGameProps> = ({onStartGame}) => {
+  const [multi, setMulti] = useState(true);
+  const [length, setLength] = useState(5);
 
   return (
-    <form className={styles.formContainer}>
+    <div className={styles.formContainer}>
       <div>
         <input
           className={styles.checkbox}
           type="checkbox"
-          checked={isChecked}
+          checked={multi}
           name="uniqueCharacters"
-          onChange={handleOnChange}
+          onChange={() => {
+            setMulti(!multi);
+          }}
         />
         Unique characters
       </div>
       <div>
-        <select name="selectLetters">
+        <select
+          name="selectLetters"
+          value={length}
+          onChange={(e) => setLength(parseInt(e.target.value))}
+        >
           <option value="5">5</option>
           <option value="6">6</option>
           <option value="7">7</option>
@@ -45,10 +38,13 @@ export default function StartGame({ setGameData }: any) {
         </select>
         Letters
       </div>
-      <button className={styles.submitButton} onClick={handleSubmit}>
+      <button
+        className={styles.submitButton}
+        onClick={() => onStartGame(length, multi)}
+      >
         Start Game
       </button>
-    </form>
+    </div>
   );
 }
-// Submit fetches game data from database and sets state for app.
+export default StartGame;

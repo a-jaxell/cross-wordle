@@ -6,14 +6,12 @@ import { useState } from "react";
 function App() {
   const [game, setGame] = useState();
 
-  //Set any for now, change to GameObject later
-  const getGameData = (data: any) => {
-    setGame(data);
-  };
   return (
     <>
       {/* <Header /> */}
-      <StartGame handleSubmit={getGameData} />
+      <StartGame onStartGame={(length, multi)=> {
+        console.log(length, multi);
+      }} />
       {/* <Game matchResponse={mockMatch} /> */}
     </>
   );
