@@ -12,11 +12,31 @@ type GameProps = {
 const Game: FC<GameProps> = ({gameId}) =>
   // state for handling amount of guesses. (as in how many)
   {
-    const [feedback, setFeedback] = useState<MatchResponse>();
+    const [feedback, setFeedback] = useState<LetterMatch[][]>([]);
     return (
       <div>
-        {/* <Word guessLetters={} /> */}
-        <GuessInput onSubmit={()=>{}} length={gameId.length}/>
+        { feedback.map((guess, index) => {
+        return <Word key={index} guessLetters={guess} />
+        })
+      }
+
+        <GuessInput onSubmit={ async(guess)=>{
+          const res = await fetch(`/api/game/${gameId.id}/guess`,{
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              guessedWord: guess
+            })
+          })
+          const data = await res.json();
+          setFeedback(() => 
+            [...feedback,
+            data.match
+            ]
+          );
+        }} length={gameId.length}/>
       </div>
     );
   };
@@ -27,8 +47,8 @@ export default Game;
 function Word({ guessLetters }: { guessLetters: LetterMatch[] }) {
   return (
     <ul className={styles.wordContainer}>
-      {guessLetters.map((letter) => {
-        return <Letter match={letter} />;
+      {guessLetters.map((letter, index) => {
+        return <Letter key={index} match={letter} />;
       })}
     </ul>
   );
