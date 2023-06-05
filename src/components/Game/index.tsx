@@ -1,20 +1,26 @@
+import { FC } from "react";
 import styles from "./style.module.scss";
+import { useState } from "react";
+import GuessInput from "../GuessInput";
+type GameProps = {
+  gameId: {
+    id: string;
+    length: number;
+  }
+};
 
-export default function Game({
-  matchResponse,
-}: {
-  matchResponse: MatchResponse;
-}) {
-  return (
-    <div>
-      <Word guessLetters={matchResponse.match} />
-      <form>
-        <input type="text" />
-        <input type="submit" placeholder="Guess" />
-      </form>
-    </div>
-  );
-}
+const Game: FC<GameProps> = ({gameId}) =>
+  // state for handling amount of guesses. (as in how many)
+  {
+    const [feedback, setFeedback] = useState<MatchResponse>();
+    return (
+      <div>
+        {/* <Word guessLetters={} /> */}
+        <GuessInput onSubmit={()=>{}} length={gameId.length}/>
+      </div>
+    );
+  };
+export default Game;
 
 //Helper functions
 

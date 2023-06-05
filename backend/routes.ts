@@ -34,7 +34,8 @@ app.post('/api/game', (req, res) => {
 
     GAMES.push(gameId);
     res.status(201).json({
-        id: gameId.id
+        id: gameId.id,
+        length: gameId.length
     });
 })
 
