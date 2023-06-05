@@ -16,7 +16,7 @@ function App() {
   return (
     <>
       {/* <Header /> */}
-      {screen == 'start' && <StartGame onStartGame={ async (length, multi)=> {
+      {screen === 'start' && <StartGame onStartGame={ async (length, multi)=> {
         const res = await fetch('/api/game', {
           method: 'POST',
           headers: {
@@ -33,7 +33,7 @@ function App() {
         setScreen('game');
       }} />
     }
-      { screen == 'game' && gameId && <Game gameId={gameId} />}
+      { screen === 'game' && gameId && <Game gameId={gameId} />}
     </>
   );
 }

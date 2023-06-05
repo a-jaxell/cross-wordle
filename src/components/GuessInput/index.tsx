@@ -7,7 +7,6 @@ type GuessInputProps = {
 
 const GuessInput: FC<GuessInputProps> = ({ onSubmit, length }) => {
   const [guessedWord, setGuessedWord] = useState("");
-  const [isDisabled, setIsDisabled] = useState(true);
   return (
     <form onSubmit={(e) => {
         e.preventDefault();
@@ -16,10 +15,11 @@ const GuessInput: FC<GuessInputProps> = ({ onSubmit, length }) => {
     }}>
       <input
         type="text"
+        maxLength={length}
         value={guessedWord}
         onChange={(ev) => setGuessedWord(ev.target.value)}
       />
-      <button type="submit" placeholder="Guess">
+      <button type="submit" disabled={guessedWord.length !== length? true : false}>
         Guess
       </button>
     </form>
