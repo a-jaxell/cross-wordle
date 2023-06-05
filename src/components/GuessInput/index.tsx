@@ -1,5 +1,5 @@
 import { useState, FC } from "react";
-
+import styles from  './style.module.scss'
 type GuessInputProps = {
   onSubmit: (guess: string) => void;
   length: number;
@@ -8,7 +8,7 @@ type GuessInputProps = {
 const GuessInput: FC<GuessInputProps> = ({ onSubmit, length }) => {
   const [guessedWord, setGuessedWord] = useState("");
   return (
-    <form onSubmit={(e) => {
+    <form className={styles.container} onSubmit={(e) => {
         e.preventDefault();
         onSubmit(guessedWord);
         setGuessedWord('');
