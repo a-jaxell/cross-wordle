@@ -6,15 +6,24 @@ import words from './words/words.js';
 import databaseConnect from './database/databaseConnect.js';
 import { GameObject } from './util/types.js';
 import { HighscoreModel, GameModel } from './database/models.js';
+import ejs from 'ejs';
 
 const app = express();
 
 const GAMES: GameObject[] = []; 
 
 app.use(express.json());
+app.use(express.static('public'))
 
-app.get('/', async (req, res) => {
-    res.send('App is responding');
+app.set('view engine', ejs);
+app.set('views', '/templates');
+
+app.get('/highscores', async (req, res) => {
+    const { length, multi, time } = req.body;
+
+
+
+    res.render('highscores.ejs');
 });
 
 app.post('/api/game', (req, res) => {
