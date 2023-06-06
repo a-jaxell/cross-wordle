@@ -2,24 +2,28 @@ import { FC } from "react";
 import styles from "./style.module.scss";
 import { useState } from "react";
 import GuessInput from "../GuessInput";
+import SubmitHighscore from "../SubmitHighscore";
+import { HighscoreObject } from "../../App";
+
 type GameProps = {
+  gameComplete: (highscore: HighscoreObject) => void;
   gameId: {
     id: string;
     length: number;
   }
 };
 
-const Game: FC<GameProps> = ({gameId}) =>
-  // state for handling amount of guesses. (as in how many)
+const Game: FC<GameProps> = ({gameId, gameComplete}) =>
   {
     const [feedback, setFeedback] = useState<LetterMatch[][]>([]);
+    const [correct, setCorrect] = useState<boolean>(false)
     return (
       <div>
         { feedback.map((guess, index) => {
         return <Word key={index} guessLetters={guess} />
         })
       }
-
+      { !correct &&
         <GuessInput onSubmit={ async(guess)=>{
           const res = await fetch(`/api/game/${gameId.id}/guess`,{
             method: 'POST',
@@ -31,12 +35,28 @@ const Game: FC<GameProps> = ({gameId}) =>
             })
           })
           const data = await res.json();
+          if(data.correct){
+            setCorrect(true);
+          }
           setFeedback(() => 
             [...feedback,
             data.match
             ]
           );
-        }} length={gameId.length}/>
+        }} length={gameId.length}/> }
+        { correct && <SubmitHighscore onSubmit={ async(name)=> {
+          const res = await fetch(`/api/game/${gameId.id}/highscore`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              name: name, 
+            })
+          })
+          const data = await res.json();
+          gameComplete(data);
+        }} />}
       </div>
     );
   };
@@ -69,8 +89,4 @@ function Letter({ match }: { match: LetterMatch }) {
 type LetterMatch = {
   letter: string;
   result: "correct" | "mismatched" | "incorrect" | string;
-};
-type MatchResponse = {
-  id: string;
-  match: LetterMatch[];
 };
