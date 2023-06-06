@@ -82,7 +82,7 @@ function Letter({ match }: { match: LetterMatch }) {
       : "";
   return (
     <>
-      <li className={`${matchResult} ${styles.letter}`}>{match.letter}</li>
+      <li className={`${matchResult} ${styles.letter}`}>{match.letter.toUpperCase()}</li>
     </>
   );
 }
