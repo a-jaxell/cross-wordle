@@ -59,11 +59,13 @@ function App() {
       )}
       {screen === "highscore" && highscore && (
         <>
-          <DisplayHighscore highscore={highscore} />
-          <button onClick={() => {
-            setHighscore(null);
-            setScreen('start')
-          }}>Start new game</button>
+          <DisplayHighscore
+            highscore={highscore}
+            onSubmit={() => {
+              setHighscore(null);
+              setScreen("start");
+            }}
+          />
         </>
       )}
     </>

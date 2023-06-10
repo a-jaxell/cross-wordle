@@ -1,21 +1,20 @@
-import React from "react";
-
 export default function Header() {
-  const currentPage = ""; // state for what page
   return (
     <>
-      <h1>{currentPage || "Wordle"}</h1>
-      <ul>
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="/about">About</a>
-        </li>
-        <li>
-          <a href="/highscores">Highscores</a>
-        </li>
-      </ul>
+      <h1>Wordle-clone</h1>
+      <nav>
+        <ul>
+          <li>
+            <a href="/">Start Game</a>
+          </li>
+          <li>
+            <a href="/about">About</a>
+          </li>
+          <li>
+            <a href="/highscores">Highscores</a>
+          </li>
+        </ul>
+      </nav>
     </>
   );
 }
