@@ -10,7 +10,8 @@
 
 # production
 /build
-/backend/static
+/backend/static/main.css
+/backend/static/main.js
 
 # misc
 .DS_Store
