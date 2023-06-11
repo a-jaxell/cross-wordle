@@ -1,4 +1,3 @@
-import Header from "./components/Header";
 import Game from "./components/Game";
 import StartGame from "./components/StartGame";
 import { useState } from "react";

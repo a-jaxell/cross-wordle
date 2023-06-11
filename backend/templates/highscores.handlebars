@@ -1,21 +1,14 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <h1>Fastest Guessers</h1>
-        <ul>
+    <div class="highscore-container">
+
+        <h1 class="highscore-head">Fastest Guessers</h1>
+        <ul class="highscore-list">
         {{#each highscores}} 
-            <li>
-                <span>{{this.name}}</span>
-                <span>{{this.correctWord}}</span>
-                <span>{{this.duration}}</span>
+            <li class="highscore-item">
+                <span class="highscore-name">{{this.name}}</span>
+                <span class="highscore-word">{{this.correctWord}}</span>
+                <span class="highscore-time">{{this.duration}}</span>
             </li>
         {{/each}}
         </ul>
-    
-    </body>
-    </html>
+
+    </div>

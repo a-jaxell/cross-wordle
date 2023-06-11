@@ -39,3 +39,46 @@ code {
 a:hover{
   text-decoration: underline;
 }
+.about-container{
+  background-color: bisque;
+  border-radius: 5px;
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 2em;
+  padding: 2em;
+}
+.about-paragraph{
+  margin-left: 1em;
+}
+.highscore-container{
+  background-color: bisque;
+  border-radius: 5px;
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 2em;
+  padding: 2em;
+}
+.highscore-head{
+  text-align: center;
+}
+.highscore-list{
+  width: 80%;
+  margin: 0 auto;
+}
+.highscore-item{
+  list-style: none;
+}
+.highscore-name{
+  font-size: 1.5em;
+  margin-right: 1em;
+  font-weight: bold;
+}
+.highscore-word{
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  color: green;
+  margin-right: 1em;
+}
+.highscore-time{
+  font-style: italic;
+}
