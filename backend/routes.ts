@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 
 app.get('/about', (req,res) => {
 
-    res.send();
+    res.render('about.handlebars');
 })
 
 app.get('/highscores', async (req, res) => {
