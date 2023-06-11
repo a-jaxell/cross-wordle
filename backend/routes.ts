@@ -6,15 +6,44 @@ import words from './words/words.js';
 import databaseConnect from './database/databaseConnect.js';
 import { GameObject } from './util/types.js';
 import { HighscoreModel, GameModel } from './database/models.js';
+import { engine }  from 'express-handlebars';
 
 const app = express();
 
 const GAMES: GameObject[] = []; 
 
 app.use(express.json());
+app.use('/static', express.static('./backend/static'));
 
-app.get('/', async (req, res) => {
-    res.send('App is responding');
+app.engine('handlebars', engine())
+app.set('view engine', 'handlebars');
+app.set('views', './backend/templates');
+
+app.get('/', (req, res) => {
+
+    res.render('game.handlebars');
+});
+
+app.get('/about', (req,res) => {
+
+    res.render('about.handlebars');
+})
+
+app.get('/highscores', async (req, res) => {
+    const { length, multi, time } = req.body;
+
+    databaseConnect();
+
+    const entryModels = await HighscoreModel.find();
+    // expand query to accept parameters
+    const highscores = entryModels.map(model => {
+        return {
+            ...model.toJSON(),
+            // insert time handling function here to get time 
+            // other stuff
+        }
+    });
+    res.render('highscores.handlebars', {highscores});
 });
 
 app.post('/api/game', (req, res) => {
