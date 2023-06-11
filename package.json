@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && cp build/static/js/main.*.js backend/static/main.js",
+    "build": "react-scripts build && cp build/static/js/main.*.js backend/static/main.js && cp build/static/css/main.*.css backend/static/main.css",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start-backend": "nodemon /src/backend/app.ts"
@@ -47,7 +47,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3080",
+  "proxy": "http://localhost:5080",
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
     "@types/ejs": "^3.1.2",

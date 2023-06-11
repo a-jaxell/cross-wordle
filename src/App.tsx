@@ -26,7 +26,6 @@ function App() {
 
   return (
     <>
-      {/* <Header /> */}
       {screen === "start" && (
         <StartGame
           onStartGame={async (length, multi) => {

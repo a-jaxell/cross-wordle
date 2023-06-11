@@ -1,7 +1,9 @@
+import styles from './style.module.scss';
+
 export default function Header() {
   return (
-    <>
-      <h1>Wordle-clone</h1>
+    <header className={styles.header}>
+      <h1>cross-wordle</h1>
       <nav>
         <ul>
           <li>
@@ -15,6 +17,6 @@ export default function Header() {
           </li>
         </ul>
       </nav>
-    </>
+    </header>
   );
 }
