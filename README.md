@@ -1,5 +1,10 @@
 # Wordle-klon
 
+Using MongoDB, Express, React and Node.js this is an app that lets you
+guess a word. It accepts settings on word length and wether you want
+to play with duplicate letters or not.
+
+
 To build and run this project locally run the commands below.
 
 ``` bash
@@ -8,21 +13,22 @@ npm install
 npm start
 
 ```
+Then go to [localhost:5080/](http://localhost:5080/) and try it out.
 
 ---
+
 ### API
 
 #### /api/game
 ##### `POST /api/game`
-Starts a new game and stores game data in database.
-    * Ta emot inställningar
-    * Välja ord efter inställningar
-    * Skapa spelobjekt med ord, gissade ord, inställningar och unikt id
-    * svarar med unikt id
+    Sends input settings to server and receives an game id in return.
+    Stores game Id on server.
+
 
 ##### `POST /api/game/:id/guess`
     Submits a guess and checks if it is correct.
-    Returns matching letters nd wether the word submitted is correct or not.
+    Adds guess to game object matching the id. 
+    Returns matching letters and wether the word submitted is correct or not.
 
 ##### `POST /api/game/:id/highscore`
     Submits a new highscore to the database.
@@ -31,8 +37,5 @@ Starts a new game and stores game data in database.
 
 #### /api/highscore
 ##### `GET /api/highscore`
-Gets the top ten fastest times according to settings
-    * ta emot inställningar
-    * filtrera efter färdiga spel
-    * filtrera databas efter inställningar 
-    * returnera array med objekt 
+    Gets all submitted highscores from the database.
+    It doesnt filter or sort at the moment. 
