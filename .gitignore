@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+package-lock.json
 /.pnp
 .pnp.js
 
@@ -10,8 +11,7 @@
 
 # production
 /build
-/backend/static/main.css
-/backend/static/main.js
+/backend/static
 
 # misc
 .DS_Store
