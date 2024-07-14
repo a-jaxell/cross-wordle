@@ -82,7 +82,7 @@ app.post("/api/game/:id/guess", async (req, res) => {
   const { guessedWord } = req.body;
   const { id } = req.params;
 
-  const game = GAMES.find((game) => game.id == id);
+  const game = GAMES.find((game) => game.id === id);
 
   if (!game) {
     return res.status(404).end();
@@ -108,7 +108,7 @@ app.post("/api/game/:id/highscore", async (req, res) => {
   const { name } = req.body;
   const { id } = req.params;
 
-  const game = GAMES.find((game) => game.id == id);
+  const game = GAMES.find((game) => game.id === id);
 
   if (!game) {
     return res.status(404).end();
