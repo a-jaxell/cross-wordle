@@ -2,6 +2,8 @@
   "name": "cross-wordle",
   "version": "0.1.0",
   "private": true,
+  "description": "A fullstack solution for a wordle clone",
+  "author": "Alvar Jaxell alvar.jaxell@gmail.com", 
   "type": "module",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -21,13 +23,25 @@
     "uuid": "^9.0.0",
     "web-vitals": "^2.1.4"
   },
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/ejs": "^3.1.2",
+    "@types/luxon": "^3.3.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "handlebars": "^4.7.7",
+    "mongoose": "^7.2.1",
+    "nodemon": "^2.0.22",
+    "sass": "^1.62.1",
+    "ts-node": "^10.9.1"
+  },
   "scripts": {
     "start": "npm run build && nodemon", 
     "start:dev": "react-scripts start",
     "build": "react-scripts build && echo 'Build complete' && mkdir -p backend/static && echo 'Static directory ensured' && cp build/static/js/main.*.js backend/static/main.js && echo 'JS file copied' && cp build/static/css/main.*.css backend/static/main.css && echo 'CSS file copied'",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-backend": "nodemon /backend/app.ts"
+    "start-backend": "nodemon backend/app.ts"
   },
   "eslintConfig": {
     "extends": [
@@ -47,17 +61,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5080",
-  "devDependencies": {
-    "@types/dotenv": "^8.2.0",
-    "@types/ejs": "^3.1.2",
-    "@types/luxon": "^3.3.0",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "handlebars": "^4.7.7",
-    "mongoose": "^7.2.1",
-    "nodemon": "^2.0.22",
-    "sass": "^1.62.1",
-    "ts-node": "^10.9.1"
-  }
+  "proxy": "http://localhost:5080"
 }
