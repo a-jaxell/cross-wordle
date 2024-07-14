@@ -82,3 +82,17 @@ a:hover{
 .highscore-time{
   font-style: italic;
 }
+.error-container{
+  background-color: bisque;
+  border-radius: 5px;
+  width: 40%;
+  margin: 0 auto;
+  margin-top: 2em;
+  padding: 2em;
+}
+.error-header{
+  font-size: larger;
+}
+.error-text{
+  text-align: center;
+}

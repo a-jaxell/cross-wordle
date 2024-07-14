@@ -30,19 +30,31 @@ app.get("/about", (req, res) => {
 
 app.get("/highscores", async (req, res) => {
 
-  databaseConnect();
+  try {
+    await databaseConnect();
+  
+    const entryModels = await HighscoreModel.find();
+    const highscores = entryModels.map((model) => {
+      const start = DateTime.fromJSDate(model.startTime);
+      const end = DateTime.fromJSDate(model.endTime);
+      const time = end.diff(start, ["minutes", "seconds"]).toFormat("mm:ss");
+      return {
+        ...model.toJSON(),
+        duration: time,
+      };
+    });
+    res.render("highscores.handlebars", { highscores });
+  
+  } catch (error) {
+    console.error("Database connection error: ", error);
 
-  const entryModels = await HighscoreModel.find();
-  const highscores = entryModels.map((model) => {
-    const start = DateTime.fromJSDate(model.startTime);
-    const end = DateTime.fromJSDate(model.endTime);
-    const time = end.diff(start, ["minutes", "seconds"]).toFormat("mm:ss");
-    return {
-      ...model.toJSON(),
-      duration: time,
-    };
-  });
-  res.render("highscores.handlebars", { highscores });
+    res.status(500).render("error.handlebars", {
+      message: "Database connection error",
+    });
+
+  }
+  
+
 });
 
 app.post("/api/game", (req, res) => {
