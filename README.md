@@ -32,7 +32,7 @@ To run with MongoDBs cloud database Atlas you need to create a `.env` file and s
 `MONGODB_URI`
 
 ```bash
-MONGODB_URI = mongodb+srv://user:password@your-database.mongodb.net/
+MONGODB_URI = mongodb+srv://user:password@your-database.mongodb.net/your-collection
 ```
 
 Then start the app like normally with
