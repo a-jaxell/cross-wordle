@@ -1,7 +1,14 @@
+# Packages and build
 node_modules
+build
+
+#logs
 npm-debug.log
+
+# Docker
 Dockerfile
 .dockerignore
+
+# Vcs and documentation
 README.md
 .git
-build
