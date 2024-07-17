@@ -55,7 +55,7 @@ jobs:
 
       - name: Debug SSH connection
         run: |
-          ssh -v -i ~/.ssh/id_rsa root@${{ secrets.DROPLET_IP }} "echo 'SSH connection successful'"
+          ssh -v -i ~/.ssh/id_rsa ${{ secrets.DROPLET_USERNAME }}@${{ secrets.DROPLET_IP }} "echo 'SSH connection successful'"
 
       - name: Login to Docker Hub
         run: |
