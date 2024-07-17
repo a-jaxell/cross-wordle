@@ -71,5 +71,5 @@ jobs:
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:${{ github.sha }}
             docker stop cross-wordle || true
             docker rm cross-wordle || true
-            docker run -d --name cross-wordle -e MONGODB_URI=${{ secrets.MONGODB_URI }} -p 3010:5080 ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:${{ github.sha }}
+            docker run -d -p 3010:5080 --name cross-wordle -e MONGODB_URI=${{ secrets.MONGODB_URI }} ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:${{ github.sha }}
             docker image prune -a -f
