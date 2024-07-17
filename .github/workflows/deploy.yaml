@@ -68,7 +68,7 @@ jobs:
           username: ${{ secrets.DROPLET_USERNAME }}
           key: ${{ secrets.DROPLET_SSH_KEY }}
           script: |
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:latest
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:{{ github.sha }}
             docker stop cross-wordle || true
             docker rm cross-wordle || true
             docker run -d --name cross-wordle -e MONGODB_URI=${{ secrets.MONGODB_URI }} -p 3010:5080 ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:${{ github.sha }}
