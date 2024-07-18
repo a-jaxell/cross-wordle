@@ -68,7 +68,7 @@ jobs:
           username: ${{ secrets.DROPLET_USERNAME }}
           key: ${{ secrets.DROPLET_SSH_KEY }}
           script: |
-            IMAGE=${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:${{ github.sha }}
+            IMAGE=${{ secrets.DOCKERHUB_USERNAME }}/cross-wordle:${{ github.sha }}
             CONTAINER_NAME=cross-wordle
 
             echo "Pulling Docker image $IMAGE"
